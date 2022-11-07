@@ -1,21 +1,18 @@
 #include "Book.hpp"
-#include <list>
-#include <vector>
+#include <map>
 
-using BookStore = std::vector<Book>;
-using Order = std::list<Book>;
+using BookStore = std::map<Book, int>;
+using Order = std::map<Book, int>;
 
 class BookShopManagementSystem 
 {
 public:
     BookShopManagementSystem(BookStore);
-    void addBooksToOrder(Order);
+    void addBooksToOrder(Book, int);
     void showActualOrder();
-    void deleteBooksFromOrder(Order);
+    void deleteBooksFromOrder(Book);
 
 private:
-    void addBookToOrder(Book);
-    void deleteBookFromOrder(Book);
     BookStore bookStore;
     Order order;
 };

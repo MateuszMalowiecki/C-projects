@@ -7,53 +7,57 @@ BookShopManagementSystem::BookShopManagementSystem(BookStore store)
     this.bookStore = store;
 }
 
-void BookShopManagementSystem::addBooksToOrder(Order books)
+void BookShopManagementSystem::addBooksToOrder(Book book, int amount) 
 {
-    for(book:books) 
+    bookName = book.getName();
+    it = bookStore.find(book);
+    if (it == bookStore.end()) 
     {
-        this.addBookToOrder(book);
+        std::cout << "Error: Book " << bookName << " not available in the store" << std::endl;
+        return;
     }
+
+    book_amount = *it;
+    if (book_amount >= amount) 
+    {
+        bookStore[book] = book_amount - amount;
+        if (order.find(book) == order.end()) 
+        {
+            order[book] = 0;
+        }
+        order[book] += amount;
+        std::cout << "Succesfully placed book " << bookName << " in order" << std::endl;
+        return;
+    }
+
+    std::cout << "Error: Book" << bookName << "not available in the store." << std::endl;
 }
+
+void BookShopManagementSystem::deleteBooksFromOrder(Book book)
+{
+    bookName = book.getName();
+    it = order.find(book);
+    if (it == order.end()) 
+    {
+        std::cout << "Error: Book " << bookName << " was not placed in your order" << std::endl;
+        return;
+    }
+    book_amount = *it
+    if(book_amount > 0) 
+    {
+        order[book] = 0;
+        bookStore[book] = amount;
+        std::cout << "Succesfully removed book from order" << std::endl;
+        return;
+    }
+    std::cout << "Error: Book " << bookName << " was not placed in your order" << std::endl;
+}
+
 void BookShopManagementSystem::showActualOrder() 
 {
-    std::cout << "Your books: " << std::endl
-    for(book: this.order) 
+    std::cout << "Your books: " << std::endl;
+    for(it = order.begin(); it != order.end(); it++) 
     {
-        std::cout << book;
+        std::cout << "Book: " << it->first << ", amount: " << it->second << std::endl;
     }
-}
-void BookShopManagementSystem::deleteBooksFromOrder(Order books)
-{
-    for(book:books)
-    {
-        this.deleteBookFromOrder(book);
-    }
-}
-void BookShopManagementSystem::addBookToOrder(Book book) 
-{
-    for (book_in_store : bookStore) 
-    {
-        if(Book book_in_store.name == book.name) 
-        {
-            bookStore.erase(book);
-            order.emplace(book);
-            std::cout << "Succesfully placed book in order";
-            return;
-        }
-    }
-    std::cout << "Error: Book not available in the store. Please choose different one";
-}
-void BookShopManagementSystem::deleteBookFromOrder(Book book)
-{
-    for (Book book_in_order : order) 
-    {
-        if(book_in_order.name == book.name) 
-        {
-            order.erase(book);
-            bookStore.emplace(book);
-            std::cout << "Succesfully removed book from order";
-            return;
-        }
-    }
-    std::cout << "Error: Book not available in the store. Please choose different one";
 }
