@@ -1,38 +1,38 @@
 #include "Book.hpp"
 
-Book::book(int price, std::string name, std::string author) 
+Book::Book(int price, std::string name, std::string author) 
 {
-    this.price=price;
-    this.name=name;
-    this.author=author;
+    this->price=price;
+    this->name=name;
+    this->author=author;
 }
 
-std::ostream& Book::operator<<(std::ostream& stream)
+std::ostream& operator<<(std::ostream& stream, const Book& book) 
 {
-    stream << "Name: " << this.name << ", author: " << this.author << ", price: " << this.price;
-    return stream
+    stream << "Name: " << book.name << ", author: " << book.author << ", price: " << book.price;
+    return stream;
 }
 
-bool Book::operator==(Book otherBook) 
+bool Book::operator==(const Book& otherBook) 
 {
-    return this.getName() == otherBook.getName() && this.getAuthor() == otherBook.getAuthor();
+    return this->getName() == otherBook.getName() && this->getAuthor() == otherBook.getAuthor();
 }
 
-bool Book::operator<(Book otherBook) const
+bool Book::operator<(const Book& otherBook) const
 {
-    return this.getPrice() < otherBook.getPrice()
+    return this->getPrice() < otherBook.getPrice();
 }
-int Book::getPrice() 
+int Book::getPrice() const
 {
-    return this.price;
-}
-
-std::string Book::getName()
-{
-    return this.name;
+    return this->price;
 }
 
-std::string Book::getAuthor()
+std::string Book::getName() const
 {
-    return this.author;
+    return this->name;
+}
+
+std::string Book::getAuthor() const
+{
+    return this->author;
 }

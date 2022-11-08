@@ -11,6 +11,7 @@ public:
     void addBooksToOrder(Book, int);
     void showActualOrder();
     void deleteBooksFromOrder(Book);
+    int getOrderPrice();
 
 private:
     BookStore bookStore;

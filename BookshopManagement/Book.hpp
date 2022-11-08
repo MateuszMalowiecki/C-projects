@@ -5,12 +5,12 @@ class Book
 {
 public:
     Book(int, std::string, std::string);
-    std::ostream& operator<<(std::ostream& stream);
+    friend std::ostream& operator<<(std::ostream&, const Book&);
     bool operator==(const Book&);
     bool operator<(const Book&) const;
-    int getPrice();
-    std::string getName();
-    std::string getAuthor();
+    int getPrice() const;
+    std::string getName() const;
+    std::string getAuthor() const;
 private:
     int price;
     std::string name;
