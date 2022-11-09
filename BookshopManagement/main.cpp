@@ -15,11 +15,15 @@ int main()
     std::cout << "Order price: " << system.getOrderPrice() << std::endl;
     system.addBooksToOrder(book3, 1);
     system.showActualOrder();
+    system.addBooksToOrder(book1, 3);
+    system.showActualOrder();
     std::cout << "Order price: " << system.getOrderPrice() << std::endl;
     system.deleteBooksFromOrder(book1);
     system.showActualOrder();
     std::cout << "Order price: " << system.getOrderPrice() << std::endl;
     system.deleteBooksFromOrder(book3);
+    system.showActualOrder();
+    system.deleteBooksFromOrder(book1);
     system.showActualOrder();
     std::cout << "Order price: " << system.getOrderPrice() << std::endl;
     return 0;

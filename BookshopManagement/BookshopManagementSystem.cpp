@@ -31,7 +31,7 @@ void BookShopManagementSystem::addBooksToOrder(Book book, int amount)
         return;
     }
 
-    std::cout << "Error: Book" << bookName << "not available in the store." << std::endl;
+    std::cout << "Error: Book " << bookName << " not available in the store." << std::endl;
 }
 
 void BookShopManagementSystem::deleteBooksFromOrder(Book book)
