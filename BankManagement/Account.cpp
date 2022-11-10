@@ -1,9 +1,10 @@
 #include "Account.hpp"
+#include <iostream>
 
-Account::Account(const int& amount, const std::string& name) 
+Account::Account(const int& amount, const std::string& ownerName) 
 {
     this->amount = amount;
-    this->name = name;   
+    this->ownerName = ownerName;   
 }
 
 int Account::getAmount() 

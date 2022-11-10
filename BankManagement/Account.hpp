@@ -3,6 +3,7 @@
 #pragma once
 class Account {
 public:
+    Account() = default;
     Account(const int&, const std::string&);
     int getAmount();
     void setAmount(const int&);
@@ -10,4 +11,4 @@ public:
 private:
     int amount;
     std::string ownerName;
-}
+};

@@ -2,10 +2,11 @@
 #include "BankManagementSystem.hpp"
 #include <iostream>
 
-void BankManagementSystem::createAccount(const Account& account) 
+void BankManagementSystem::createAccount(Account& account) 
 {
-    std::string accountName = account.getName();
-    accounts[accountName] = account;
+    std::string accountOwnerName = account.getOwnerName();
+    accounts[accountOwnerName] = account;
+    std::cout << "Succesfully added account of " << accountOwnerName << std::endl;
 }
 
 void BankManagementSystem::showAccountDetails(const std::string& accountOwnerName) 
@@ -13,7 +14,7 @@ void BankManagementSystem::showAccountDetails(const std::string& accountOwnerNam
     auto account = this->getAccountOfOwner(accountOwnerName);
     if(account)
     {
-        std::cout << "Amount in the account of " << accountOwnerName << " is: " << account->getAmount();
+        std::cout << "Amount in the account of " << accountOwnerName << " is: " << account->getAmount() << std::endl;
     }
 }
 
@@ -23,8 +24,8 @@ void BankManagementSystem::depositMoney(const int& amount, const std::string& ac
     if(account) 
     {
         auto actualAmount = account->getAmount();
-        account->setAmount(actualAmount + amount);
-        std::cout << "Successfully deposited amount " << amount << " into the account of " << accountOwnerName;
+        accounts[accountOwnerName].setAmount(actualAmount + amount);
+        std::cout << "Successfully deposited amount " << amount << " into the account of " << accountOwnerName << std::endl;
     }
 }
 
@@ -36,21 +37,21 @@ void BankManagementSystem::withdrawMoney(const int& amount, const std::string& a
         auto actualAmount = account->getAmount();
         if (actualAmount < amount) 
         {
-            std::cerr << "You cannot withdraw " << amount << " ,because you have only " << actualAmount;
+            std::cerr << "Error: You cannot withdraw " << amount << ", because you have only " << actualAmount << " on the account" << std::endl;
             return;
         }
-        account->setAmount(actualAmount - amount);
-        std::cout << "Successfully withdrawed amount " << amount << " from the account of " << accountOwnerName;
+        accounts[accountOwnerName].setAmount(actualAmount - amount);
+        std::cout << "Successfully withdrawed amount " << amount << " from the account of " << accountOwnerName << std::endl;
     }
 }
 
 boost::optional<Account> BankManagementSystem::getAccountOfOwner(const std::string& accountOwnerName) 
 {
-    auto it = accounts.find(accountName);
+    auto it = accounts.find(accountOwnerName);
     if (it == accounts.end()) 
     {
-        std::cerr << "Account of" << " not found"
+        std::cerr << "Error: Account of " << accountOwnerName << " not found" << std::endl;
         return boost::none;
     }
-    return *it;
+    return it->second;
 }

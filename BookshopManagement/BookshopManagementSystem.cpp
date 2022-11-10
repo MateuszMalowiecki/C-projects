@@ -44,11 +44,11 @@ void BookShopManagementSystem::deleteBooksFromOrder(const Book& book)
         std::cerr << "Error: Book " << bookName << " was not placed in your order" << std::endl;
         return;
     }
-    auto book_amount = it->second;
-    if(book_amount > 0) 
+    auto bookAmount = it->second;
+    if(bookAmount > 0) 
     {
         order.erase(book);
-        bookStore[book] = book_amount;
+        bookStore[book] = bookAmount;
         std::cout << "Succesfully removed book " << bookName << " from the order" << std::endl;
         return;
     }
