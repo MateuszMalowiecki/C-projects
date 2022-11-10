@@ -14,14 +14,14 @@ void BookShopManagementSystem::addBooksToOrder(Book book, int amount)
     auto it = bookStore.find(book);
     if (it == bookStore.end()) 
     {
-        std::cout << "Error: Book " << bookName << " not available in the store" << std::endl;
+        std::cerr << "Error: Book " << bookName << " not available in the store" << std::endl;
         return;
     }
 
-    auto book_amount = it->second;
-    if (book_amount >= amount) 
+    auto bookAmount = it->second;
+    if (bookAmount >= amount)
     {
-        bookStore[book] = book_amount - amount;
+        bookStore[book] = bookAmount - amount;
         if (order.find(book) == order.end()) 
         {
             order[book] = 0;
@@ -30,8 +30,8 @@ void BookShopManagementSystem::addBooksToOrder(Book book, int amount)
         std::cout << "Succesfully placed book " << bookName << " in the order" << std::endl;
         return;
     }
-
-    std::cout << "Error: Book " << bookName << " not available in the store." << std::endl;
+    auto isPlural = bookAmount == 1 ? " copy " : " copies ";
+    std::cerr << "Error: Only " << bookAmount << isPlural << " of the book available in the store." << std::endl;
 }
 
 void BookShopManagementSystem::deleteBooksFromOrder(Book book)
@@ -41,18 +41,18 @@ void BookShopManagementSystem::deleteBooksFromOrder(Book book)
     auto it = order.find(book);
     if (it == order.end()) 
     {
-        std::cout << "Error: Book " << bookName << " was not placed in your order" << std::endl;
+        std::cerr << "Error: Book " << bookName << " was not placed in your order" << std::endl;
         return;
     }
     auto book_amount = it->second;
     if(book_amount > 0) 
     {
-        order[book] = 0;
+        order.erase(book);
         bookStore[book] = book_amount;
         std::cout << "Succesfully removed book " << bookName << " from the order" << std::endl;
         return;
     }
-    std::cout << "Error: Book " << bookName << " was not placed in your order" << std::endl;
+    std::cerr << "Error: Book " << bookName << " was not placed in your order" << std::endl;
 }
 
 void BookShopManagementSystem::showActualOrder() 
