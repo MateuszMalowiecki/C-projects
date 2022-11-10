@@ -11,7 +11,7 @@ void BankManagementSystem::createAccount(Account account)
 void BankManagementSystem::showAccountDetails(const std::string& accountOwnerName) 
 {
     auto account = this->getAccountOfOwner(accountOwnerName);
-    if(account) 
+    if(account)
     {
         std::cout << "Amount in the account of " << accountOwnerName << " is: " << account->getAmount();
     }
@@ -34,6 +34,11 @@ void BankManagementSystem::withdrawMoney(const int& amount, const std::string& a
     if(account) 
     {
         auto actualAmount = account->getAmount();
+        if (actualAmount < amount) 
+        {
+            std::cerr << "You cannot withdraw " << amount << " ,because you have only " << actualAmount;
+            return;
+        }
         account->setAmount(actualAmount - amount);
         std::cout << "Successfully withdrawed amount " << amount << " from the account of " << accountOwnerName;
     }
