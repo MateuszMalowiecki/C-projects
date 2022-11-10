@@ -7,10 +7,10 @@ using Order = std::map<Book, int>;
 class BookShopManagementSystem 
 {
 public:
-    BookShopManagementSystem(BookStore);
-    void addBooksToOrder(Book, int);
+    BookShopManagementSystem(const BookStore&);
+    void addBooksToOrder(const Book&, const int&);
     void showActualOrder();
-    void deleteBooksFromOrder(Book);
+    void deleteBooksFromOrder(const Book&);
     int getOrderPrice();
 
 private:

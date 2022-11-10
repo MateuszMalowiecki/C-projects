@@ -1,10 +1,11 @@
+#include <string>
 
 #pragma once
 class Account {
 public:
-    Account(int amount, string name);
+    Account(const int&, const std::string&);
     int getAmount();
-    void setAmount(int newAmount);
+    void setAmount(const int&);
     std::string getOwnerName();
 private:
     int amount;

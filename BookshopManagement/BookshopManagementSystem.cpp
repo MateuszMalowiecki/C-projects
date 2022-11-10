@@ -2,12 +2,12 @@
 #include "BookShopManagementSystem.hpp"
 #include <iostream>
 
-BookShopManagementSystem::BookShopManagementSystem(BookStore store)
+BookShopManagementSystem::BookShopManagementSystem(const BookStore& store)
 {
     this->bookStore = store;
 }
 
-void BookShopManagementSystem::addBooksToOrder(Book book, int amount) 
+void BookShopManagementSystem::addBooksToOrder(const Book& book, const int& amount) 
 {
     auto bookName = book.getName();
     std::cout << "Trying to add book " << bookName << " to the order" << std::endl;
@@ -34,7 +34,7 @@ void BookShopManagementSystem::addBooksToOrder(Book book, int amount)
     std::cerr << "Error: Only " << bookAmount << isPlural << " of the book available in the store." << std::endl;
 }
 
-void BookShopManagementSystem::deleteBooksFromOrder(Book book)
+void BookShopManagementSystem::deleteBooksFromOrder(const Book& book)
 {
     auto bookName = book.getName();
     std::cout << "Trying to remove book " << bookName << " from the order" << std::endl;

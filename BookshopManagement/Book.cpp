@@ -1,6 +1,6 @@
 #include "Book.hpp"
 
-Book::Book(int price, std::string name, std::string author) 
+Book::Book(const int& price, const std::string& name, const std::string& author) 
 {
     this->price=price;
     this->name=name;

@@ -4,7 +4,7 @@
 class Book 
 {
 public:
-    Book(int, std::string, std::string);
+    Book(const int&, const std::string&, const std::string&);
     friend std::ostream& operator<<(std::ostream&, const Book&);
     bool operator==(const Book&);
     bool operator<(const Book&) const;
