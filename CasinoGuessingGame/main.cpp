@@ -5,10 +5,10 @@ int main()
 {
     int amount = INITIAL_AMOUNT;
     std::cout << "Welcome to casino guessing number game. " << std::endl;
-    while (true) 
+    while (true)
     {
         int bet;
-        std::cout << "You have now " << amount << " number of money. Please make a bet." << std::endl;
+        std::cout << "You have now " << amount << " money. Please make a bet." << std::endl;
         std::cin >> bet;
         while (bet > amount) 
         {
@@ -25,7 +25,7 @@ int main()
             std::cout << "Your guess was correct. You won: " << bettingPrice << " money" << std::endl;
             amount += bettingPrice;
         }
-        else 
+        else
         {
             std::cout << "Sorry. The correct answer was: " << correctNumber << ". You lost " << bet << " money" << std::endl;
             amount -= bet;
